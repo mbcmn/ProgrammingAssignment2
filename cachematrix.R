@@ -1,5 +1,8 @@
-###and whether the comments you include in your functions indicate that you understand
-###lexical scoping and the superassignment operator (<<-) 
+# makeCacheMatrix initialises m (which is set to NULL) and x.
+# The set function then assigns NULL to m and y to x in the parent environment.
+# Then, the get function ('getter') retrieves x from the parent environment.
+# The 'setter' setinverse() is assigned the value of the inverse (solve) to m in the parent environment.
+# The last step is defining the getter for m (using lexical scoping to find m).
 
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
@@ -15,6 +18,11 @@ makeCacheMatrix <- function(x = matrix()) {
          getinverse = getinverse)
 }
 
+
+# cacheSolve returns m from cache if it is not NULL (which it is set initially in makeCacheMatrix).
+# If m is NULL, i.e. m has not been calculated and saved in the cache, the function sets m to the inverse using
+# the solve function and stores o the value obtained as m for future operations using lexical scoping.
+
 cacheSolve <- function(x, ...) {
     m <- x$getinverse()
     if(!is.null(m)) {
@@ -28,14 +36,6 @@ cacheSolve <- function(x, ...) {
     
 }
 
-### add comments for each function to explain understanding
 
-## whether the comments you include in your functions indicate that you understand
-## lexical scoping and the superassignment operator (<<-) as used in these functions
-
-### Commands
-###
-### a <- makeCacheMatrix(matrix(1:4, 2, 2))
-### cachemean(a)
 
 
